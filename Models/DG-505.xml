@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>DG-505.ac</path>
+
+
+	<!-- Livery management -->
+	<nasal>
+		<load>
+			var livery_update = aircraft.livery_update.new("Aircraft/DG-505/Models/Liveries");
+		</load>
+		<unload>
+			livery_update.stop();
+		</unload>
+	</nasal>
+ 
+ 
+	<animation>
+	<type>material</type>
+		<object-name>fuselage</object-name>
+		<object-name>front_cache</object-name>
+		<object-name>front_wheel</object-name>
+		<object-name>main_wheel</object-name>
+		<object-name>tail_cache</object-name>
+		<object-name>tail_wheel</object-name>
+		<object-name>vstab</object-name>
+		<object-name>rudder</object-name>
+		<object-name>hstab</object-name>
+		<object-name>elevator</object-name>
+		<object-name>pitot_tube</object-name>
+		<object-name>left_gear_door</object-name>
+		<object-name>right_gear_door</object-name>
+		<object-name>wing</object-name>
+		<object-name>left_speedbrake</object-name>
+		<object-name>right_speedbrake</object-name>
+		<object-name>left_aileron</object-name>
+		<object-name>right_aileron</object-name>
+		<object-name>left_protector</object-name>
+		<object-name>right_protector</object-name>
+		<property-base>sim/model/livery</property-base>
+	</animation>
+
+  
+	<!-- Rudder -->
+	<animation>
+     <object-name>rudder</object-name>
+     <property>controls/flight/rudder</property>
+     <type>rotate</type>
+     <factor>30.0</factor>
+     <center>
+		<x-m>5.64</x-m>
+		<y-m>0</y-m>
+		<z-m>0.92</z-m>
+	 </center>
+	 <axis>
+		<x>0</x>
+		<y>0</y>
+		<z>1</z>
+	 </axis>
+	</animation>
+
+
+	<!-- Elevators -->
+	<animation>
+     <object-name>elevator</object-name>
+     <property>controls/flight/elevator</property>
+     <type>rotate</type>
+     <factor>30.0</factor>
+     <center>
+		<x-m>5.55</x-m>
+		<y-m>0</y-m>
+		<z-m>1.78</z-m>
+	 </center>
+	 <axis>
+		<x>0</x>
+		<y>1</y>
+		<z>0</z>
+	 </axis>
+	</animation>
+
+
+	<!-- Ailerons -->
+	<!-- Left Aileron -->
+	<animation>
+     <object-name>left_aileron</object-name>
+     <property>controls/flight/aileron</property>
+     <type>rotate</type>
+     <factor>30.0</factor>
+     <center>
+		<x-m>0.57</x-m>
+		<y-m>-7.22</y-m>
+		<z-m>0.41</z-m>
+	 </center>
+	 <axis>
+		<x>0.06</x>
+		<y>1</y>
+		<z>-0.02</z>
+	 </axis>
+	</animation>
+  
+	<!-- Right Aileron -->
+	<animation>
+     <object-name>right_aileron</object-name>
+     <property>controls/flight/aileron</property>
+     <type>rotate</type>
+     <factor>30.0</factor>
+     <center>
+		<x-m>0.57</x-m>
+		<y-m>7.22</y-m>
+		<z-m>0.41</z-m>
+	 </center>
+	 <axis>
+		<x>0.06</x>
+		<y>-1</y>
+		<z>-0.02</z>
+	 </axis>
+	</animation>
+
+
+	<!-- Speedbrakes -->
+	<!-- Speedbrakes -->
+	<animation>
+     <type>translate</type>
+     <object-name>left_speedbrake</object-name>
+     <object-name>right_speedbrake</object-name>
+     <property>/surface-positions/speedbrake-pos-norm</property>
+     <factor>0.07</factor>
+     <axis>
+       <x>0</x>
+       <y>0</y>
+       <z>3</z>
+     </axis>
+	</animation> 
+
+  
+	<!-- Landing Gear -->
+	<!-- Wheels -->
+	<animation>
+     <type>rotate</type>
+     <object-name>main_wheel</object-name>
+     <property>/gear/gear[0]/position-norm</property>
+     <factor>25</factor>
+     <center>
+		<x>0.166</x>
+       <y>0</y>
+       <z>-0.157</z>
+	 </center>
+	 <axis>
+		<x>0</x>
+		<y>1</y>
+		<z>0</z>
+	 </axis>
+	</animation>
+
+
+	<!--fahrwerksaufnahme-->
+	<animation>
+     <type>translate</type>
+     <object-name>rear_linkage</object-name>
+     <property>/gear/gear[0]/position-norm</property>
+     <factor>0.25</factor>
+     <axis>
+       <x>-0.95</x>
+       <y>0</y>
+       <z>-1.3</z>
+     </axis>
+	</animation>
+	
+    <animation>
+     <type>rotate</type>
+     <object-name>front_linkage</object-name>
+     <property>/gear/gear[0]/position-norm</property>
+     <factor>25</factor>
+	 <center>
+		<x>0.166</x>
+       <y>0</y>
+       <z>-0.157</z>
+	 </center>
+	 <axis>
+		<x>0</x>
+		<y>1</y>
+		<z>0</z>
+	 </axis>
+	</animation>
+   
+</PropertyList>

@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <sim>
+
+    <description>Glaser-Dirks DG-505 Elan ORION</description>
+    <author>dg-505</author>
+    <status>alpha</status>
+    <rating>
+      <FDM     type="int">0</FDM>
+      <systems type="int">0</systems>
+      <cockpit type="int">0</cockpit>
+      <model   type="int">2</model>
+    </rating>
+    <startup>
+      <splash-texture>splash.png</splash-texture>
+    </startup>
+
+
+
+
+    <flight-model archive="y">yasim</flight-model>
+    <aero archive="y">dg-505-yasim</aero>
+
+
+
+
+    <model>
+      <path archive="y">Aircraft/DG-505/Models/DG-505.xml</path>
+    </model>
+
+
+    <!-- hide the 2D panel -->
+    <panel>
+      <visibility archive="y">false</visibility>
+    </panel>
+
+
+
+
+    <!-- adjust the pilot viewpoint and angle -->
+    <view>
+      <name>Pilot</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <from-model-idx type="int">0</from-model-idx>
+        <x-offset-m archive="y"> 0.00</x-offset-m>
+        <y-offset-m archive="y"> 0.39</y-offset-m>
+        <z-offset-m archive="y">-1.22</z-offset-m>            <!-- 1.65 - 2.21 = -0.56 -->
+        <pitch-offset-deg>-10</pitch-offset-deg>
+      </config>
+    </view>
+    
+    <!-- positive x-values move the viewpoint to the right -->
+    <!-- negative x-values move the viewpoint to the left -->
+    <!-- positive y-values move the viewpoint to the top -->
+    <!-- negative y-values move the viewpoint to the bottom -->
+    <!-- positive z-values move the viewpoint to the back -->
+    <!-- negative z-values move the viewpoint to the front -->
+
+
+
+    <glider>
+      <ballast>
+        <mass_per_tank_lbs>110.0</mass_per_tank_lbs>
+        <mass_lbs_per_second>3.0</mass_lbs_per_second>
+      </ballast>
+      <winch>
+        <conf>
+          <rope_initial_length_m>1000.0</rope_initial_length_m>
+          <pull_max_lbs>1102.0</pull_max_lbs> <!-- 500daN -->
+        </conf>
+      </winch>
+      <towing>
+        <conf>
+          <rope_length_m>60.0</rope_length_m>
+          <nominal_towforce_lbs>500.0</nominal_towforce_lbs>
+          <breaking_towforce_lbs>9999.0</breaking_towforce_lbs>
+        </conf>
+        <hooked>0</hooked>
+      </towing>
+    </glider>
+
+  </sim>
+
+
+
+
+  
+  <input>
+    <keyboard>
+    
+      <key n="23">
+        <name>Ctrl-w</name>
+        <desc>Place Winch and hook in</desc>
+        <binding>
+          <command>nasal</command>
+          <script>towing.setWinchPositionAuto()</script>
+        </binding>
+      </key>
+      <key n="87">
+        <name>W</name>
+        <desc>Toggle winch hook</desc>
+        <binding>
+          <command>nasal</command>
+          <script>
+            var p = "/sim/hitches/winch/open";
+            setprop(p, !getprop(p));
+          </script>
+        </binding>
+      </key>
+      <key n="119">
+        <name>w</name>
+        <desc>Increase winch speed</desc>
+        <binding>
+          <command>nasal</command>
+          <script>interpolate("/sim/hitches/winch/winch/rel-speed", 1.0, 2)</script>
+        </binding>
+        <mod-up>
+          <binding>
+            <command>nasal</command>
+            <script>interpolate("/sim/hitches/winch/winch/rel-speed", 0.0, 2)</script>
+          </binding>
+        </mod-up>
+      </key>
+      
+      <key n="119">
+        <name>w</name>
+        <desc>Start winch</desc>
+        <binding>
+          <command>nasal</command>
+          <script>dg-505.startWinch()</script>
+        </binding>
+      </key>
+      
+      <key n="87">
+        <name>W</name>
+        <desc>Release winch hook</desc>
+        <binding>
+          <command>nasal</command>
+          <script>dg-505.releaseWinch()</script>
+        </binding>
+      </key>
+      
+    </keyboard>
+    
+  </input>
+
+
+
+
+  <nasal>
+    <dg-505>
+      <!-- This binds the joystick's throttle slider to the spoilers. -->
+      <file>/Nasal/speedbrakes_throttle.nas</file>
+      <file>/Nasal/winch.nas</file>
+    </dg-505>
+  </nasal>
+
+
+
+
+</PropertyList>
